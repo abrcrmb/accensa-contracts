@@ -8,6 +8,16 @@ breaking changes bump the **minor** version, and they are called out as such.
 
 ## [Unreleased]
 
+- **`refund-policy-vdf` / `receipt-anchor` (issues #755, #778): rustdoc for
+  the fallback dispute helpers and the `RateLimitUpdatedEvent` fields.**
+  `contracts/refund-policy-vdf/src/fallback.rs` now documents
+  `request_dispute`, `settle_dispute` and `get_dispute` — pre-conditions,
+  error arms and the events each publishes. `contracts/receipt-anchor/src/lib.rs`
+  documents the 5 public fields of `RateLimitUpdatedEvent`: the before and
+  after burst capacity and refill interval, their caps (`MAX_RATE_BURST`,
+  `MAX_RATE_REFILL_INTERVAL`), the `{0, 0}` disabled-config cases, and the
+  ledger sequence of the change. Doc comments only — no signature, body,
+  ordering or test change.
 - **`receipt-shard` (issue #679): `prune_batches` returns a typed error
   instead of trapping.** `prune_batches` now returns `Result<(u64, u64),
   Error>`; its three construction-time instance reads (`Router`, `EndBatchId`,
